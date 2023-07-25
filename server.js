@@ -6,6 +6,8 @@ const WebSocket = require("ws");
 const { createServer } = require("http");
 require('dotenv').config();
 
+const cors = require('cors');
+
 const users = require('./routes/api/Users');
 const auth = require('./routes/api/Auth');
 const rooms = require('./routes/api/Rooms'); 
@@ -14,6 +16,7 @@ const packs = require('./routes/api/Packs');
 const port = process.env.PORT || 5000;
 
 const app = express();
+app.use(cors({origin: ["http://localhost:3000", "https://bb-front.onrender.com/"],}));
 app.use(express.json());
 
 const server = createServer(app);
@@ -39,17 +42,16 @@ app.use('/api/rooms', function (req, res, next) {
 }, rooms);
 
 //Serve static assets if in production
-/*
+
 if(process.env.NODE_ENV === 'production'){
     //set static folder
-    app.use(express.static(process.env.front));
+    app.use(express.static(process.env.front+'/build'));
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     });
 
 }
-*/
 
 const webSocketServer = new WebSocket.Server({ server });
 
