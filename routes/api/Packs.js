@@ -74,4 +74,8 @@ router.get('/getpacks' + '/:id', (req, res) => {
     }
 })
 
+router.get('/test', (req, res) => {
+    res.json({'test':'test'})
+})
+
 module.exports = router;
