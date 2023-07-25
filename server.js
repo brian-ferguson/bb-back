@@ -16,7 +16,7 @@ const packs = require('./routes/api/Packs');
 const port = process.env.PORT || 5000;
 
 const app = express();
-app.use(cors({origin: ["http://localhost:3000", "https://bb-front.onrender.com/"],}));
+app.use(cors({origin: ["http://localhost:3000", "https://bb-front.onrender.com"],}));
 app.use(express.json());
 
 const server = createServer(app);
