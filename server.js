@@ -45,7 +45,8 @@ app.use('/api/rooms', function (req, res, next) {
 
 if(process.env.NODE_ENV === 'production'){
     //set static folder
-    app.use(express.static(process.env.front+'/build'));
+    //app.use(express.static(process.env.front+'/build'));
+    app.use(express.static(path.join(__dirname, 'build')));
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
