@@ -43,16 +43,7 @@ app.use('/api/rooms', function (req, res, next) {
 
 //Serve static assets if in production
 
-if(process.env.NODE_ENV === 'production'){
-    //set static folder
-    //app.use(express.static(process.env.front+'/build'));
-    app.use(express.static(path.join(__dirname, 'build')));
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-    });
-
-}
 
 const webSocketServer = new WebSocket.Server({ server });
 
